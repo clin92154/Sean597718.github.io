@@ -54,6 +54,7 @@
           position: latlng,
           map: map
       });
+      
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
               var pos = {
@@ -72,7 +73,19 @@
           // Browser doesn't support Geolocation
           alert("未允許或遭遇錯誤！");
       }
-  }
+      funtion getLocation(){
+          navigator.geolocation.getCurrentPosition(function(position) {
+              var pos = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude
+              };
+              var marker = new google.maps.Marker({
+                  position: pos,
+                  map: map
+              });
+        };
+        setInterval(getLocation, 1000);
+  };
           </script>
         </header>
 
